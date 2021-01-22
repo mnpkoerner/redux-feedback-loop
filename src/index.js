@@ -22,9 +22,18 @@ const feedbackReducer = (state = {}, action) => {
             return state.support = action.payload;
         case 'COMMENTS':
             return state.comments = action.payload;
+        default:
+            return state;
     }
+
 }
 
+const reduxStore = createStore(
+    combineReducers({
+      feedbackReducer
+    }),
+    applyMiddleware(logger)
+  );
 
 //wrap app in provider tag to access store
 ReactDOM.render(<Provider store={reduxStore}><App /></Provider>, document.getElementById('root'));
