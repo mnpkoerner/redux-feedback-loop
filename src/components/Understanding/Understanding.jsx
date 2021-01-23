@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
+import swal from 'sweetalert';
 
 export default function Understanding() {
     const dispatch = useDispatch()

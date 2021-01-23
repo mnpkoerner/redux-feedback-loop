@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
+import swal from 'sweetalert';
 
 
 export default function Submit() {
@@ -18,8 +19,18 @@ export default function Submit() {
             url: '/feedback',
             data: data
         }).then((response) => {
-            dispatch({ type: 'RESET' })
-            history.push('/');
+            console.log(response)
+            swal({
+                title: "Thank you!",
+                text: "We appreciate your feedback!",
+                icon: "success",
+                button: "OK",
+            }).then((understand) => {
+                if (understand) {
+                    dispatch({ type: 'RESET' })
+                    history.push('/');
+                }
+            });
         }).catch((error) => {
             console.log(error)
             alert('error sending data')
