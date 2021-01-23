@@ -56,6 +56,7 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   background-color: #a3bae0;
 }
+
 .true{
   background-color: rgb(100, 202, 5) !important;
 }

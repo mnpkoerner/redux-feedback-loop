@@ -25,6 +25,36 @@ export default function Admin() {
         })
     }
 
+    const handleDelete = (id) => {
+        console.log('feedback', id)
+        //go to /feedback/{id}
+        const deleteId = Number(id);
+        swal({
+            title: "Are you sure?",
+            text: "This action will delete this feedback forever",
+            icon: "warning",
+            button: "OK",
+        }).then((understand) => {
+            if (understand) {
+                console.log('in delete', deleteId)
+                //delete
+                axios({
+                    method: 'DELETE',
+                    url: `/feedback/${deleteId}`
+                }).then((response) => {
+                    console.log(response)
+                    getFeedback()
+                }).catch((error) => {
+                    console.log(error)
+                })
+            }
+            else {
+                console.log('clicked outside box')
+                return
+            }
+        })
+    }
+
     const flagFeedback = (id) => {
         console.log('feedback', id)
         //go to /feedback/{id}
@@ -41,46 +71,47 @@ export default function Admin() {
         })
 }
 
-useEffect(() => {
-    getFeedback();
-}, [])
-return (
-    <div>
-        <h1>Admin Portal</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Flag</th>
-                    <th>Feeling?</th>
-                    <th>Understanding?</th>
-                    <th>Supported?</th>
-                    <th>Comments</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                {adminReducer.map((feedback) => {
-                    return (
-                        <tr key={feedback.id} className={feedback.flagged.toString()}>
-                            <td><IconButton
-                                onClick={() => flagFeedback(feedback.id)}
-                                variant="outlined">
-                                <FlagIcon />
-                            </IconButton></td>
-                            <td>{feedback.feeling}</td>
-                            <td>{feedback.understanding}</td>
-                            <td>{feedback.support}</td>
-                            <td>{feedback.comments}</td>
-                            <td><Button
-                                startIcon={<DeleteForeverIcon />}
-                                variant="contained"
-                                color="secondary"
-                                onClick={() => handleDelete(feedback.id)}>Delete</Button></td>
-                        </tr>
-                    )
-                })}
-            </tbody>
-        </table>
-    </div>
-)
+
+    useEffect(() => {
+        getFeedback();
+    }, [])
+    return (
+        <div>
+            <h1>Admin Portal</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Flag</th>
+                        <th>Feeling?</th>
+                        <th>Understanding?</th>
+                        <th>Supported?</th>
+                        <th>Comments</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {adminReducer.map((feedback) => {
+                        return (
+                            <tr key={feedback.id} className={feedback.flagged.toString()}>
+                                <td><IconButton
+                                    onClick={()=>flagFeedback(feedback.id)}
+                                    variant="outlined">
+                                    <FlagIcon />
+                                </IconButton></td>
+                                <td>{feedback.feeling}</td>
+                                <td>{feedback.understanding}</td>
+                                <td>{feedback.support}</td>
+                                <td>{feedback.comments}</td>
+                                <td><Button
+                                    startIcon={<DeleteForeverIcon />}
+                                    variant="contained"
+                                    color="secondary"
+                                    onClick={() => handleDelete(feedback.id)}>Delete</Button></td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
+        </div>
+    )
 }
