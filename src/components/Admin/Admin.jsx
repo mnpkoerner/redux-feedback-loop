@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import FlagIcon from '@material-ui/icons/Flag';
 import swal from 'sweetalert';
 
@@ -13,6 +14,11 @@ export default function Admin() {
     const history = useHistory();
     const adminReducer = useSelector(store => store.adminReducer)
     const dispatch = useDispatch()
+
+    const returnHome = () => {
+        history.push('/');
+        dispatch({type: 'RESET_ADMIN'})
+    }
 
     //get data
     const getFeedback = () => {
@@ -112,6 +118,16 @@ export default function Admin() {
                     })}
                 </tbody>
             </table>
+            <div className="button_box">
+                <Button
+                    endIcon={<DoubleArrowIcon />}
+                    onClick={()=>returnHome()}
+                    variant="contained"
+                    color="primary"
+                    >
+                    Return Home
+                </Button>
+            </div>
         </div>
     )
 }
