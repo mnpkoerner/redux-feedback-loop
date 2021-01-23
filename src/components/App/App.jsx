@@ -8,6 +8,7 @@ import Support from '../Support/Support';
 import Comments from '../Comments/Comments'
 import Submit from '../Submit/Submit'
 import Admin from '../Admin/Admin'
+import SecretGoat from '../SecretGoat/SecretGoat'
 import { HashRouter as Router, Route, Link} from 'react-router-dom'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
@@ -57,6 +58,9 @@ function App() {
         path='/submit'
         exact
         component={Submit} />
+        <Route
+        path='/secretGoat'
+        component={SecretGoat} />
         <Route
         path='/admin'
         exact
