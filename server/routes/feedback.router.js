@@ -33,6 +33,23 @@ router.delete('/:id', (req, res)=>{
     })
 })
 
+router.put('/:id', (req, res)=>{
+    const id = [req.params.id]
+    const queryText = `
+        UPDATE "feedback"
+        SET "flagged" = NOT "flagged"
+        WHERE "id" = $1;
+    `
+    pool.query(queryText, id)
+    .then((response)=>{
+        console.log(response);
+        res.sendStatus(200);
+    }).catch((error)=>{
+        console.log(error);
+        res.sendStatus(500);
+    })
+})
+
 router.post('/', (req, res) => {
     const feedback = [
         Number(req.body.feeling), Number(req.body.understanding), Number(req.body.support), req.body.comments
