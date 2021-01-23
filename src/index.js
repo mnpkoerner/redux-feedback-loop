@@ -15,17 +15,20 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 const feedbackReducer = (state = {}, action) => {
     switch(action.type){
         case 'FEELING':
-            return state.feeling = action.payload;
+            state.feeling = action.payload;
+            return state;
         case 'UNDERSTANDING':
-            return state.feeling = action.payload;
+            state.understanding = action.payload;
+            return state;
         case 'SUPPORT':
-            return state.support = action.payload;
+            state.support = action.payload;
+            return state;
         case 'COMMENTS':
-            return state.comments = action.payload;
+            state.comments = action.payload;
+            return state;
         default:
             return state;
     }
-
 }
 
 const reduxStore = createStore(
