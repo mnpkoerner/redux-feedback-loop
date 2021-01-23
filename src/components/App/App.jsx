@@ -8,13 +8,27 @@ import Support from '../Support/Support';
 import Comments from '../Comments/Comments'
 import Submit from '../Submit/Submit'
 import { HashRouter as Router, Route, Link} from 'react-router-dom'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#033076"
+    },
+    secondary: {
+      main: "#f57c00"
+    }
+  }
+});
 
 function App() {
 
   return (
     <Router>
+      <ThemeProvider theme={theme}>
       <div className='App'>
-        <header className='App-header'>
+        <header
+          className='App-header'>
           <h1 className='App-title'>Feedback!</h1>
           <h4>Don't forget it!</h4>
         </header>
@@ -43,6 +57,7 @@ function App() {
         exact
         component={Submit} />
       </div>
+      </ThemeProvider>
     </Router>
   );
 }

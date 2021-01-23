@@ -1,4 +1,6 @@
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button'
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
 export default function Home() {
     const history = useHistory();
@@ -6,10 +8,16 @@ export default function Home() {
         history.push('/feeling')
     }
 
-    return(
+    return (
         <div>
             <p>Share your feedback with us!</p>
-            <button onClick={()=>nextPage()}>Let's Begin!</button>
+            <Button
+                endIcon={<DoubleArrowIcon />}
+                variant="contained"
+                color="primary"
+                onClick={() => nextPage()}>
+                Let's Begin!
+            </Button>
         </div>
     )
 }
