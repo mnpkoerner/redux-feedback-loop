@@ -33,6 +33,18 @@ const feedbackReducer = (state = {}, action) => {
             return state;
     }
 }
+const adminReducer = (state = [], action) => {
+    switch (action.type){
+        case 'GET_FEEDBACK':
+            state = action.payload;
+            return state;
+        case 'RESET_ADMIN':
+            state = [];
+            return state;
+        default:
+            return state;
+    }
+}
 
 const reduxStore = createStore(
     combineReducers({
