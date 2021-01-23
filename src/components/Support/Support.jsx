@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import swal from 'sweetalert';
+import Button from '@material-ui/core/Button'
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 
 export default function Support() {
     const dispatch = useDispatch()
@@ -52,8 +55,22 @@ export default function Support() {
                 <option value="2">2 - I needed more support</option>
                 <option value="1">1 - Not supported</option>
             </select>
-            <button onClick={() => handleClick(false)}>Previous Page</button>
-            <button onClick={() => handleClick(true)}>Next Page</button>
+            <div className="button_box">
+                <Button
+                    startIcon={<KeyboardArrowLeftIcon />}
+                    variant='contained'
+                    color='secondary'
+                    onClick={() => handleClick(false)}>
+                    Go Back
+            </Button>
+                <Button
+                    endIcon={<DoubleArrowIcon />}
+                    variant="contained"
+                    color="primary"
+                    onClick={() => handleClick(true)}>
+                    Next Page
+            </Button>
+            </div>
 
         </div>
     )

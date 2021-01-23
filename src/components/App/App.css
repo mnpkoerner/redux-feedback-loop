@@ -25,3 +25,11 @@ h4 {
 textarea{
   resize: none;
 }
+
+.button_box{
+  padding-top: 45px;
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+}

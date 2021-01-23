@@ -1,8 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import swal from 'sweetalert';
+import Button from '@material-ui/core/Button'
+import PublishIcon from '@material-ui/icons/Publish';
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 
 
 export default function Submit() {
@@ -12,34 +14,34 @@ export default function Submit() {
 
     //send in feedbackReducer for POST
     const handleClick = (data) => {
-        if(data){
-        //needs to be posted to server
-        //
-        axios({
-            method: 'POST',
-            url: '/feedback',
-            data: data
-        }).then((response) => {
-            console.log(response)
-            swal({
-                title: "Thank you!",
-                text: "We appreciate your feedback!",
-                icon: "success",
-                button: "OK",
-            }).then((understand) => {
-                if (understand) {
-                    dispatch({ type: 'RESET' })
-                    history.push('/');
-                }
-            });
-        }).catch((error) => {
-            console.log(error)
-            alert('error sending data')
-        })
-    }
-    else{
-        history.push('/comments')
-    }
+        if (data) {
+            //needs to be posted to server
+            //
+            axios({
+                method: 'POST',
+                url: '/feedback',
+                data: data
+            }).then((response) => {
+                console.log(response)
+                swal({
+                    title: "Thank you!",
+                    text: "We appreciate your feedback!",
+                    icon: "success",
+                    button: "OK",
+                }).then((understand) => {
+                    if (understand) {
+                        dispatch({ type: 'RESET' })
+                        history.push('/');
+                    }
+                });
+            }).catch((error) => {
+                console.log(error)
+                alert('error sending data')
+            })
+        }
+        else {
+            history.push('/comments')
+        }
     }
 
     return (
@@ -53,8 +55,22 @@ export default function Submit() {
             <h5>{feedbackReducer.support} out of 5</h5>
             <h3>Additional feedback:</h3>
             <h5>{feedbackReducer.comments}</h5>
-            <button onClick={()=>handleClick(false)}>Previous Page</button>
-            <button onClick={() => handleClick(feedbackReducer)}>Submit</button>
+            <div className="button_box">
+                <Button
+                    startIcon={<KeyboardArrowLeftIcon />}
+                    variant='contained'
+                    color='secondary'
+                    onClick={() => handleClick(false)}>
+                    Go Back
+            </Button>
+                <Button
+                    endIcon={<PublishIcon />}
+                    variant="contained"
+                    color="primary"
+                    onClick={() => handleClick(feedbackReducer)}>
+                    Submit
+            </Button>
+            </div>
         </div>
     )
 }
