@@ -32,7 +32,11 @@ export default function Understanding() {
     return (
         <div>
             <h1>How well did you understand the material today?</h1>
-            <select name="understanding" id="understanding" onChange={(event) => setUnderstanding(event.target.value)}>
+            <select
+                name="understanding"
+                id="understanding"
+                value={understanding}
+                onChange={(event) => setUnderstanding(event.target.value)}>
                 <option value="" disabled>How is your understanding?</option>
                 <option value="5">5 - I could teach this!</option>
                 <option value="4">4 - I could help a little</option>

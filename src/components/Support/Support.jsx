@@ -34,7 +34,11 @@ export default function Support() {
         <div>
             <h1>How well supported did you feel today?</h1>
 
-            <select name="support" id="support" onChange={(event) => setSupport(event.target.value)}>
+            <select
+                name="support"
+                id="support"
+                value={support}
+                onChange={(event) => setSupport(event.target.value)}>
                 <option value="" disabled>How well supported were you?</option>
                 <option value="5">5 - Extremely supported!</option>
                 <option value="4">4 - Well supported</option>
