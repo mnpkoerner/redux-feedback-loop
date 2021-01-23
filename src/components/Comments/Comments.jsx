@@ -8,9 +8,14 @@ const history = useHistory()
 //state for comments
 const [comments, setComments] = useState('');
 
-const handleClick = () => {
+const handleClick = (direction) => {
+    if(direction){
     dispatch({type: 'COMMENTS', payload: comments});
     history.push('/submit')
+    }
+    else{
+        history.push('/support')
+    }
 }
 
     return(
@@ -25,7 +30,8 @@ const handleClick = () => {
                 onChange={(event)=>setComments(event.target.value)}
                 >
             </textarea>
-            <button onClick={()=>handleClick()}>Next Page</button>
+            <button onClick={()=>handleClick(false)}>Previous Page</button>
+            <button onClick={()=>handleClick(true)}>Next Page</button>
         </div>
     )
 }

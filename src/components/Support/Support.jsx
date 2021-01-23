@@ -12,22 +12,27 @@ export default function Support() {
 
     //click event sends data to redux, navigates to next page
 
-    const handleClick = () => {
-        if (support === "") {
-            swal({
-                title: "Please select an option",
-                text: "We use your feedback to help tailor our response. Please be honest with your submission",
-                icon: "warning",
-                button: "OK",
-            }).then((understand) => {
-                if (understand) {
-                    return
-                }
-            });
+    const handleClick = (direction) => {
+        if (direction) {
+            if (support === "") {
+                swal({
+                    title: "Please select an option",
+                    text: "We use your feedback to help tailor our response. Please be honest with your submission",
+                    icon: "warning",
+                    button: "OK",
+                }).then((understand) => {
+                    if (understand) {
+                        return
+                    }
+                });
+            }
+            else {
+                dispatch({ type: 'SUPPORT', payload: support });
+                history.push('/comments')
+            }
         }
         else {
-            dispatch({ type: 'SUPPORT', payload: support });
-            history.push('/comments')
+            history.push('/understanding')
         }
     }
 
@@ -47,7 +52,8 @@ export default function Support() {
                 <option value="2">2 - I needed more support</option>
                 <option value="1">1 - Not supported</option>
             </select>
-            <button onClick={() => handleClick()}>Next Page</button>
+            <button onClick={() => handleClick(false)}>Previous Page</button>
+            <button onClick={() => handleClick(true)}>Next Page</button>
 
         </div>
     )

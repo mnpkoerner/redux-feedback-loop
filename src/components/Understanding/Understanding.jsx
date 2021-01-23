@@ -11,22 +11,27 @@ export default function Understanding() {
 
     //click event sends data to redux, navigates to next page
 
-    const handleClick = () => {
-        if (understanding === "") {
-            swal({
-                title: "Please select an option",
-                text: "We use your feedback to help tailor our response. Please be honest with your submission",
-                icon: "warning",
-                button: "OK",
-            }).then((understand) => {
-                if (understand) {
-                    return
-                }
-            });
+    const handleClick = (direction) => {
+        if (direction) {
+            if (understanding === "") {
+                swal({
+                    title: "Please select an option",
+                    text: "We use your feedback to help tailor our response. Please be honest with your submission",
+                    icon: "warning",
+                    button: "OK",
+                }).then((understand) => {
+                    if (understand) {
+                        return
+                    }
+                });
+            }
+            else {
+                dispatch({ type: 'UNDERSTANDING', payload: understanding });
+                history.push('/support')
+            }
         }
         else {
-            dispatch({ type: 'UNDERSTANDING', payload: understanding });
-            history.push('/support')
+            history.push('/feeling')
         }
     }
 
@@ -45,7 +50,8 @@ export default function Understanding() {
                 <option value="2">2 - I need a little help</option>
                 <option value="1">1 - I need extra help</option>
             </select>
-            <button onClick={() => handleClick()}>Next Page</button>
+            <button onClick={() => handleClick(false)}>Previous Page</button>
+            <button onClick={() => handleClick(true)}>Next Page</button>
 
         </div>
     )
