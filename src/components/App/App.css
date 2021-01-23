@@ -33,3 +33,40 @@ textarea{
   justify-content: space-around;
   margin: auto;
 }
+
+table {
+  width: 90%;
+  margin: auto;
+  border-collapse: collapse;
+  border: 1px solid grey;
+}
+
+th {
+  background-color: #033076;
+  color: white;
+}
+
+
+tr{
+  border-bottom: 1px solid lightgrey;
+}
+tr:nth-child(even) {
+  background-color: lightgrey;
+}
+tr:nth-child(odd) {
+  background-color: #a3bae0;
+}
+
+.true{
+  background-color: rgb(100, 202, 5) !important;
+}
+
+td {
+  padding: 9px;
+  border: 1px solid lightgrey;
+}
+
+tr:hover{
+  background-color: white;
+  transition: .4s;
+}
