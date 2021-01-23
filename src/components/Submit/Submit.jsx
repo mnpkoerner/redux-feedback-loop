@@ -12,6 +12,7 @@ export default function Submit() {
 
     //send in feedbackReducer for POST
     const handleClick = (data) => {
+        if(data){
         //needs to be posted to server
         //
         axios({
@@ -36,6 +37,10 @@ export default function Submit() {
             alert('error sending data')
         })
     }
+    else{
+        history.push('/comments')
+    }
+    }
 
     return (
         <div>
@@ -48,6 +53,7 @@ export default function Submit() {
             <h5>{feedbackReducer.support} out of 5</h5>
             <h3>Additional feedback:</h3>
             <h5>{feedbackReducer.comments}</h5>
+            <button onClick={()=>handleClick(false)}>Previous Page</button>
             <button onClick={() => handleClick(feedbackReducer)}>Submit</button>
         </div>
     )
