@@ -48,7 +48,8 @@ const adminReducer = (state = [], action) => {
 
 const reduxStore = createStore(
     combineReducers({
-      feedbackReducer
+      feedbackReducer,
+      adminReducer
     }),
     applyMiddleware(logger)
   );

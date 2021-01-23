@@ -17,6 +17,22 @@ router.get('/', (req, res)=> {
     })
 })
 
+router.delete('/:id', (req, res)=>{
+    console.log('in sever delete with id', req.params)
+    const id = [req.params.id];
+    const queryText = `
+        DELETE FROM "feedback"
+        WHERE "id" = $1;
+    `;
+    pool.query(queryText, id)
+    .then((response)=>{
+        console.log(response);
+        res.sendStatus(204);
+    }).catch((error)=>{
+        console.log(error)
+    })
+})
+
 router.post('/', (req, res) => {
     const feedback = [
         Number(req.body.feeling), Number(req.body.understanding), Number(req.body.support), req.body.comments
