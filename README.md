@@ -24,13 +24,12 @@ For this week of Prime Digital Academy's Full-Stack Engineering bootcamp, we wer
 
 ## Built With
 * NodeJS
-* mySQL/Postgres/Postico
+* Postgres/Postico
 * React
-* Reux
+* Redux
 * Express
 * SweetAlert
 * Material UI
-* Postgres/Postico/mySQL
 
 ## Usage
 1. As a user, click the `Let's Begin` button on the home page
